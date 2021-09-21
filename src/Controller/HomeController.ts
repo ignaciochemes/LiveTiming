@@ -1,5 +1,5 @@
-import { JsonController, Post } from "routing-controllers";
-import HomeService from "src/Services/HomeService";
+import { Get, JsonController } from "routing-controllers";
+import HomeService from "../Services/HomeService";
 import { Service } from "typedi";
 
 @JsonController('/api/json')
@@ -9,7 +9,7 @@ export default class HomeController {
         private _homeService: HomeService
     ) {}
 
-    @Post()
+    @Get()
     async sendJson(): Promise<any> {
         return await this._homeService.postJson();
     }

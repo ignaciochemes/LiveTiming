@@ -2,7 +2,7 @@ import 'reflect-metadata';
 import Container from 'typedi';
 import * as Express from 'express';
 import HomeController from './HomeController';
-import HomeMiddleware from 'src/Middlewares/HomeMiddleware';
+import { ErrorMiddleware } from '../Middlewares/ErrorMiddleware';
 import { useExpressServer, useContainer } from 'routing-controllers';
 
 const httpContext = require('express-http-context');
@@ -14,7 +14,7 @@ useExpressServer(router, {
     classTransformer: true,
     defaultErrorHandler: false,
     controllers: [ HomeController ],
-    middlewares: [ HomeMiddleware ],
+    middlewares: [ ErrorMiddleware ],
 });
 
 export default router;
