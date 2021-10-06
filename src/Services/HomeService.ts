@@ -12,8 +12,8 @@ export default class HomeService {
     async postJson(): Promise<any> {
         let lastJson = await getMostRecentFile(path.join(__dirname, '../../../Practice Server Endurance/results/'));
         if(!lastJson || lastJson == undefined || lastJson == null) throw new BadRequestError('No existe ningun archivo para mostrar!');
-        let result = fs.readFileSync(path.join(__dirname, `../../../Practice Server Endurance/results/${lastJson.file}`), 'utf-8');
-        let replacer = await readJsonReplacer(result);
+        let jsonDir = fs.readFileSync(path.join(__dirname, `../../../Practice Server Endurance/results/${lastJson.file}`), 'utf-8');
+        let replacer = await readJsonReplacer(jsonDir);
         let response = { replacer: replacer, jsonName: lastJson.file };
         return response;
     }
