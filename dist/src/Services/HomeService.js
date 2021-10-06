@@ -34,7 +34,9 @@ let HomeService = class HomeService {
             if (!lastJson || lastJson == undefined || lastJson == null)
                 throw new routing_controllers_1.BadRequestError('No existe ningun archivo para mostrar!');
             let result = fs_1.default.readFileSync(path_1.default.join(__dirname, `../../../Practice Server Endurance/results/${lastJson.file}`), 'utf-8');
-            return yield (0, UtilityFunctions_1.readJsonReplacer)(result);
+            let replacer = yield (0, UtilityFunctions_1.readJsonReplacer)(result);
+            let response = { replacer: replacer, jsonName: lastJson.file };
+            return response;
         });
     }
 };
