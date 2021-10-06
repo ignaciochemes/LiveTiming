@@ -5,7 +5,7 @@ import { getEnvironment } from './src/Configs/Environment';
 getEnvironment();
 
 let api = Express();
-let port = process.env.PORT || 3033;
+let port = process.env.PORT || 3010;
 
 api.use('/livetiming', Express.json());
 api.use(Express.urlencoded({ extended: true }));
