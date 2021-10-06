@@ -10,9 +10,9 @@ export default class HomeService {
     constructor() {}
     
     async postJson(): Promise<void> {
-        let lastJson = await getMostRecentFile(path.join(__dirname, '../../../json/'));
+        let lastJson = await getMostRecentFile(path.join(__dirname, '../../../Practice Server Endurance/results/'));
         if(!lastJson || lastJson == undefined || lastJson == null) throw new BadRequestError('No existe ningun archivo para mostrar!');
-        let result = fs.readFileSync(path.join(__dirname, `../../../json/${lastJson.file}`), 'utf-8');
+        let result = fs.readFileSync(path.join(__dirname, `../../../Practice Server Endurance/results/${lastJson.file}`), 'utf-8');
         return await readJsonReplacer(result);
     }
 }

@@ -10,7 +10,7 @@ const orderReccentFiles = (dir: string) => {
     return fs.readdirSync(dir)
       .filter((file) => fs.lstatSync(path.join(dir, file)).isFile())
       .map((file) => ({ file, mtime: fs.lstatSync(path.join(dir, file)).mtime }))
-      .sort((a, b) => a.mtime.getTime() - b.mtime.getTime());
+      .sort((a, b) => b.mtime.getTime() - a.mtime.getTime());
 };
 
 export const readJsonReplacer = async (file: any) => {

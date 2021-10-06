@@ -30,10 +30,10 @@ let HomeService = class HomeService {
     constructor() { }
     postJson() {
         return __awaiter(this, void 0, void 0, function* () {
-            let lastJson = yield (0, UtilityFunctions_1.getMostRecentFile)(path_1.default.join(__dirname, '../../../json/'));
+            let lastJson = yield (0, UtilityFunctions_1.getMostRecentFile)(path_1.default.join(__dirname, '../../../Practice Server Endurance/results/'));
             if (!lastJson || lastJson == undefined || lastJson == null)
                 throw new routing_controllers_1.BadRequestError('No existe ningun archivo para mostrar!');
-            let result = fs_1.default.readFileSync(path_1.default.join(__dirname, `../../../json/${lastJson.file}`), 'utf-8');
+            let result = fs_1.default.readFileSync(path_1.default.join(__dirname, `../../../Practice Server Endurance/results/${lastJson.file}`), 'utf-8');
             return yield (0, UtilityFunctions_1.readJsonReplacer)(result);
         });
     }
