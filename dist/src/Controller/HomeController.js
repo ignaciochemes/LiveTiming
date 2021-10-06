@@ -30,7 +30,8 @@ let HomeController = class HomeController {
     }
     sendJson() {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield this._homeService.postJson();
+            let response = yield this._homeService.postJson();
+            return response;
         });
     }
 };

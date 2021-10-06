@@ -1,17 +1,18 @@
+import path from "path";
+import fs from 'fs';
 import { Service } from "typedi";
-import * as path from 'path';
-import * as fs from 'fs';
+import { getMostRecentFile, readJsonReplacer } from '../Utilities/UtilityFunctions';
+import { BadRequestError } from "routing-controllers";
+
 
 @Service()
 export default class HomeService {
     constructor() {}
-
-    async postJson(): Promise<any> {
-        try {
-            let json = fs.readFileSync(path.join(__dirname, '../../../json/210916_154508_Q.json'), 'utf8');
-            return JSON.stringify(json, null, 2);
-        } catch (e) {
-            console.log(e);
-        }
+    
+    async postJson(): Promise<void> {
+        let lastJson = await getMostRecentFile(path.join(__dirname, '../../../json/'));
+        if(!lastJson || lastJson == undefined || lastJson == null) throw new BadRequestError('No existe ningun archivo para mostrar!');
+        let result = fs.readFileSync(path.join(__dirname, `../../../json/${lastJson.file}`), 'utf-8');
+        return await readJsonReplacer(result);
     }
 }

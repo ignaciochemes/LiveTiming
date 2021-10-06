@@ -11,6 +11,7 @@ export default class HomeController {
 
     @Get()
     async sendJson(): Promise<any> {
-        return await this._homeService.postJson();
+        let response = await this._homeService.postJson();
+        return response;
     }
 }
