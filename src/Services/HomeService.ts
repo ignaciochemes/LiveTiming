@@ -9,7 +9,7 @@ import { BadRequestError } from "routing-controllers";
 export default class HomeService {
     constructor() {}
     
-    async postJson(): Promise<any> {
+    async getJson(): Promise<any> {
         let lastJson = await getMostRecentFile(path.join(__dirname, '../../../Practice Server Endurance/results/'));
         if(!lastJson || lastJson == undefined || lastJson == null) throw new BadRequestError('No existe ningun archivo para mostrar!');
         let jsonDir = fs.readFileSync(path.join(__dirname, `../../../Practice Server Endurance/results/${lastJson.file}`), 'utf-8');
