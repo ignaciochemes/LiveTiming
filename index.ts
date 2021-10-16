@@ -1,10 +1,8 @@
 import Express from 'express';
 import Controllers from './src/Controller/Index';
 import { getEnvironment } from './src/Configs/Environment';
-import { postJsonCron } from './src/WebServices/JsonWebServices';
-import { getMostRecentFile } from './src/Utilities/UtilityFunctions';
-import path from 'path';
 import cron from 'node-cron';
+import { MainFunction } from './src/Utilities/MainFunction';
 
 getEnvironment();
 
@@ -19,14 +17,8 @@ api.listen(port, () => {
 
 api.use('/livetiming', Controllers);
 
-async function main() {
-    let folder = await path.join(__dirname, './Practice Server Endurance/results/');
-    let file = getMostRecentFile(folder);
-    postJsonCron(file);
-}
-
-cron.schedule('*/2 * * * *', () => {
-    main();
+cron.schedule('*/1 * * * *', () => {
+    MainFunction();
 });
 
 export default api;

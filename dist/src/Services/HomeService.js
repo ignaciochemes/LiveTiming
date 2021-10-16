@@ -28,13 +28,13 @@ const UtilityFunctions_1 = require("../Utilities/UtilityFunctions");
 const routing_controllers_1 = require("routing-controllers");
 let HomeService = class HomeService {
     constructor() { }
-    postJson() {
+    getJson() {
         return __awaiter(this, void 0, void 0, function* () {
-            let lastJson = yield (0, UtilityFunctions_1.getMostRecentFile)(path_1.default.join(__dirname, '../../../Practice Server Endurance/results/'));
+            let lastJson = yield (0, UtilityFunctions_1.getMostRecentFile)(path_1.default.join(__dirname, '../../../AccServer/results/'));
             if (!lastJson || lastJson == undefined || lastJson == null)
                 throw new routing_controllers_1.BadRequestError('No existe ningun archivo para mostrar!');
-            let result = fs_1.default.readFileSync(path_1.default.join(__dirname, `../../../Practice Server Endurance/results/${lastJson.file}`), 'utf-8');
-            let replacer = yield (0, UtilityFunctions_1.readJsonReplacer)(result);
+            let jsonDir = fs_1.default.readFileSync(path_1.default.join(__dirname, `../../../AccServer/results/${lastJson.file}`), 'utf-8');
+            let replacer = yield (0, UtilityFunctions_1.readJsonReplacer)(jsonDir);
             let response = { replacer: replacer, jsonName: lastJson.file };
             return response;
         });

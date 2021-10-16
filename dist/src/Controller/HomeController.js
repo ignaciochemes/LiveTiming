@@ -28,9 +28,9 @@ let HomeController = class HomeController {
     constructor(_homeService) {
         this._homeService = _homeService;
     }
-    sendJson() {
+    getJson() {
         return __awaiter(this, void 0, void 0, function* () {
-            let response = yield this._homeService.postJson();
+            let response = yield this._homeService.getJson();
             return response;
         });
     }
@@ -40,7 +40,7 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
-], HomeController.prototype, "sendJson", null);
+], HomeController.prototype, "getJson", null);
 HomeController = __decorate([
     (0, routing_controllers_1.JsonController)('/api/json'),
     (0, typedi_1.Service)(),
