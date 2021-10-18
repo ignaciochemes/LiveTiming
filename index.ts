@@ -1,8 +1,8 @@
 import Express from 'express';
 import Controllers from './src/Controller/Index';
 import { getEnvironment } from './src/Configs/Environment';
-import cron from 'node-cron';
 import { MainFunction } from './src/Utilities/MainFunction';
+import * as Chokidar from 'chokidar';
 
 getEnvironment();
 
@@ -17,8 +17,13 @@ api.listen(port, () => {
 
 api.use('/livetiming', Controllers);
 
-cron.schedule('*/1 * * * *', () => {
-    MainFunction();
+const watcher = Chokidar.watch('./AccServer/results', {
+    ignoreInitial: true
+});
+
+watcher.on('add', async (path) => {
+    await MainFunction();
+    console.log(`Se cargo el archivo de la carpeta: ${path}`)
 });
 
 export default api;

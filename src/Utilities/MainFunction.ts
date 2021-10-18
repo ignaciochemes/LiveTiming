@@ -12,6 +12,7 @@ export const MainFunction = async () => {
         let response = { replacer: replacer, jsonName: lastJson.file };
         console.log(`Se publico el json con nombre: ${response.jsonName}. Fecha ${Date.now()}`);
         await postJsonCron(response);
+        return response;
     } catch (error) {
         throw new Error(error);
     }
