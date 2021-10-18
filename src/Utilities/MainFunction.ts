@@ -10,7 +10,7 @@ export const MainFunction = async () => {
         let jsonDir = fs.readFileSync(path.join(__dirname, `../../../AccServer/results/${lastJson.file}`), 'utf-8');
         let replacer = await readJsonReplacer(jsonDir);
         let response = { replacer: replacer, jsonName: lastJson.file };
-        console.log(`Se publico el json con nombre: ${response.jsonName}`);
+        console.log(`Se publico el json con nombre: ${response.jsonName}. Fecha ${new Date()}`);
         await postJsonCron(response);
     } catch (error) {
         throw new Error(error);
